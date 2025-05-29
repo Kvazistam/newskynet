@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewSkyNet</title>
+    <link rel="stylesheet" href="css/css-tarifs.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="img/logo.png" alt="logo">
+            <div class="NSN"> NewSkyNet</div>
+        </div>
+        <div class="button-group">
+            <form action="Главная.html">
+                <button>Главная</button>
+            </form>
+            <button class="active">Тарифы</button>
+            <form action="Техподдержка.html">
+                <button>Помощь</button>
+            </form>
+          </div>
+        <div class="uved"><img src="img/uved.png" alt="uved"></div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="tariffs">
+            <div class="bla"><h2>Подбор плана специально для вас</h2></div>
+            <div class="tariff" id="tariff-s">
+                <div class="description"><h3>Тариф S
+                    <h4>Интернет 2МБ/с <br /> Подходит для телефона</h4>
+                </h3></div>
+                <div class="cena"> 999₽ /месяц</div>
+                <form action="ТарифS.html">
+                    <button>Подключить</button>
+                </form>
+            </div>
+            <div class="tariff" id="tariff-m">
+                <div class="description"><h3>Тариф M
+                    <h4>Интернет 10МБ/с + телевидение<br /> Подходит для телефона и пк</h4>
+                </h3></div>
+                <div class="cena"> 1999₽ /месяц</div>
+                <form action="ТарифM.html">
+                    <button>Подключить</button>
+                </form>
+            </div>
+            <div class="tariff" id="tariff-l">
+                <div class="description"><h3>Тариф L
+                    <h4>Интернет 20МБ/с + телевидение<br /> Подходит для нескольких пк, приставки и телефонов</h4>
+                </h3></div>
+                <div class="cena"> 2999₽ /месяц</div>
+                <form action="ТарифL.html">
+                    <button>Подключить</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="custom-tariff">
+            <h2>Соберите свой тариф</h2>
+            <p>Выберите желаемую скорость</p>
+
+            <input type="range" min="1" max="100" value="20" class="slider" id="speedRange">
+
+            <div id="speedDisplay">20 МБ/с</div>
+
+            <div class="checkboxes">
+                <label><input type="checkbox" class="option" id="tv" checked> Телевидение</label>
+                <label><input type="checkbox" class="option" id="music"> Я.музыка</label>
+            </div>
+
+            <div class="price" id="priceDisplay">3000₽ / мес.</div>
+            <form action="Свойтариф.html">
+                <button id="connectBtn">Подключить</button>
+            </form>
+            <script>
+                const speedRange = document.getElementById('speedRange');
+                const speedDisplay = document.getElementById('speedDisplay');
+                const priceDisplay = document.getElementById('priceDisplay');
+                const checkboxes = document.querySelectorAll('.option');
+
+                function updateValues() {
+                    const speed = +speedRange.value;
+                    speedDisplay.textContent = speed + ' МБ/с';
+
+                    // Считаем количество отмеченных чекбоксов
+                    let checkedCount = 0;
+                    checkboxes.forEach(chk => {
+                        if (chk.checked) checkedCount++;
+                    });
+
+                    // Формула: 999 + (скорость * 100) + 500 * кол-во галочек
+                    const price = 999 + (speed * 100) + (checkedCount * 500);
+
+                    priceDisplay.textContent = price + '₽ /месяц';
+                }
+
+                // События
+                speedRange.addEventListener('input', updateValues);
+                checkboxes.forEach(chk => chk.addEventListener('change', updateValues));
+
+                // Инициализация при загрузке
+                updateValues();
+            </script>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="fbutton" >
+            <div class="fbutton1">
+                <a href="Главная.html">Главная</a>
+            </div>
+            <div class="fbutton2">
+                <a href="Техподдержка.html">Поддержка</a>
+            </div>
+        </div>
+        <div class="down" >
+            <p>© 2025 Все права защищены</p>
+            <div class="nav">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Связаться с нами</a>
+                <a href="#">Разработчики</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
